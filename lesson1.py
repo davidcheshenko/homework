@@ -1,60 +1,52 @@
-import dataclasses
+class Product:
+
+    def__init__(self,name:str,price: int|float) 
+       self.name = name
+       self.price = price  
 
 
-@dataclasses.dataclass
-class Dish:
-    name: str
-    price: float | int
+
+    def__str__(self)
+        return f'{self.name}: {self.price}'
 
 
-class Category:
-    def __init__(self, name: str):
-        self.name = name
-        self.__dishes = []
 
-    def add_dish(self, dish: Dish):
-        self.__dishes.append(dish)
-
-    def __str__(self):
-        return f'{self.name}:\n' + '\n'.join(map(str, self.__dishes))
+pr_1 = Product(phone,500)        
 
 
-class Menu:
-    def __init__(self, name: str):
-        self.name = name
-        self.__categories = []
-
-    def add_category(self, category: Category):
-        self.__categories.append(category)
-
-    def __str__(self):
-        return f'{self.name}:\n' + '\n'.join(map(str, self.__categories))
+class Cart:
+    def__init__(self):
+        self.__products = []
+        self.__quantity = []
 
 
-dish_1 = Dish(name="Pizza", price=12.5)
-dish_2 = Dish(name="Pasta", price=8)
-dish_3 = Dish(name="Salad", price=5.5)
-dish_4 = Dish(name="Soup", price=4.5)
-dish_5 = Dish(name="Steak", price=15)
-dish_6 = Dish(name="Fish", price=10)
-dish_7 = Dish(name="Sushi", price=20)
+    def add_product(self, product:Product, quantity = int|float = 1)
+        self.__products.append(product)
+        self.__quantity.append(quantity)
+    
+     
+     def remuve_product(self,product: Product, quantity = int| float = 1):
+        if product in self.__products:
+            index = self.__products.index(product)
+            self.__quantity[index] += quantity
+            if self.__quantity[index] <= 0
+               del self.products[index]
+               del self.quantity[index]
 
 
-category_1 = Category(name="Main Course")
-category_2 = Category(name="Appetizer")
 
-category_1.add_dish(dish_1)
-category_1.add_dish(dish_2)
-category_1.add_dish(dish_3)
-category_2.add_dish(dish_4)
-category_2.add_dish(dish_5)
-category_2.add_dish(dish_6)
-category_2.add_dish(dish_7)
 
-menu = Menu(name="Restaurant Menu")
-menu.add_category(category_1)
-menu.add_category(category_2)
+    def total(self):
+        total = 0
+        for product,quantity in zip(self.__products,self__quantity):
+            total += product.price * quantity 
+        return total 
 
-print(menu)
+
+    def__str__(self):
+        if not self.__products
+           return 'Cart is ampty'
+           
+
 
 
